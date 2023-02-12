@@ -1,7 +1,7 @@
 const http = require("http");
 const dt = require("./datetime");
 const url = require("url");
-const fs = require("fs");
+const fs = require("fs").promises;
 
 http
   .createServer(function (req, res) {
@@ -15,26 +15,22 @@ http
       res.write(`QUERY: Month - ${query.month} Year - ${query.year} <br/>`);
     }
 
-    fs.readFile(
-      "./files/file.html",
-      {
-        encoding: "utf8",
-        flag: "r",
-      },
-      (err, data) => {
-        if (err) {
-          res.write("ERROR: \n");
-          res.write(err.message);
-          res.end();
-          return;
-        }
-
+    fs.readFile("./files/file.html", {
+      encoding: "utf8",
+      flag: "r",
+    })
+      .then((data) => {
         res.write(`FILE FOUND: \n`);
         res.write(data);
         res.write(`That is all!`);
         res.end();
-      }
-    );
+      })
+      .catch((err) => {
+        res.write("ERROR: \n");
+        res.write(err.message);
+        res.end();
+        return;
+      });
   })
   .listen(8080);
 
