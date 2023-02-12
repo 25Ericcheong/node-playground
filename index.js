@@ -1,6 +1,7 @@
 const http = require("http");
 const dt = require("./datetime");
 const url = require("url");
+const fs = require("fs");
 
 http
   .createServer(function (req, res) {
@@ -13,6 +14,14 @@ http
     if (query && query.month && query.year) {
       res.write(`QUERY: Month - ${query.month} Year - ${query.year} <br/>`);
     }
+
+    // not a good idea but wanted to reading some data from a file
+    const data = fs.readFileSync("./files/file.html", {
+      encoding: "utf8",
+      flag: "r",
+    });
+    res.write(`FILE FOUND: \n`);
+    res.write(data);
 
     res.write(`That is all!`);
     res.end();
