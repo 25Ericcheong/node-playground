@@ -19,5 +19,8 @@
   "homepage": "https://github.com/25Ericcheong/node-playground#readme",
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "date-and-time": "^2.4.2"
   }
 }

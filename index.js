@@ -6,7 +6,7 @@ http
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write(`Today's date is ${dt.date()} <br/>`);
     res.write(`That is all!`);
-    res.end("");
+    res.end();
   })
   .listen(8080);
 
