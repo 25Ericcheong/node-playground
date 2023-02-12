@@ -1,0 +1,23 @@
+{
+  "name": "node-playground",
+  "version": "1.0.0",
+  "description": "Testing playground with node",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/25Ericcheong/node-playground.git"
+  },
+  "author": "Eric Cheong Kai Kit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/25Ericcheong/node-playground/issues"
+  },
+  "homepage": "https://github.com/25Ericcheong/node-playground#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
