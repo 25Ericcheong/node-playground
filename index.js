@@ -15,16 +15,26 @@ http
       res.write(`QUERY: Month - ${query.month} Year - ${query.year} <br/>`);
     }
 
-    // not a good idea but wanted to reading some data from a file
-    const data = fs.readFileSync("./files/file.html", {
-      encoding: "utf8",
-      flag: "r",
-    });
-    res.write(`FILE FOUND: \n`);
-    res.write(data);
+    fs.readFile(
+      "./files/file.html",
+      {
+        encoding: "utf8",
+        flag: "r",
+      },
+      (err, data) => {
+        if (err) {
+          res.write("ERROR: \n");
+          res.write(err.message);
+          res.end();
+          return;
+        }
 
-    res.write(`That is all!`);
-    res.end();
+        res.write(`FILE FOUND: \n`);
+        res.write(data);
+        res.write(`That is all!`);
+        res.end();
+      }
+    );
   })
   .listen(8080);
 
