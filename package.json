@@ -21,6 +21,7 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
-    "date-and-time": "^2.4.2"
+    "date-and-time": "^2.4.2",
+    "formidable": "^2.1.1"
   }
 }
