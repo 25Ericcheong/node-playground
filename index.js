@@ -2,7 +2,7 @@ const http = require("http");
 const formidable = require("formidable");
 const dt = require("./datetime");
 const url = require("url");
-const fs = require("fs").promises;
+const fs = require("fs");
 const events = require("events");
 
 const eventEmitter = new events.EventEmitter();
@@ -15,12 +15,21 @@ eventEmitter.on("success", successfulEmitterHandler);
 
 http
   .createServer(function (req, res) {
-    if (req.url === "./fileupload") {
+    if (req.url === "/fileupload") {
       const form = new formidable.IncomingForm();
       form.parse(req, function (err, fields, files) {
-        res.write("File uploaded");
-        eventEmitter.emit("success");
-        res.end();
+        const oldPath = files.filetoupload.filepath;
+        const newPath = `C:/Users/ericc/Documents/GitHub/node-playground/files/${files.filetoupload.originalFilename}`;
+
+        fs.rename(oldPath, newPath, function (err) {
+          if (err) {
+            throw err;
+          }
+
+          res.write("File uploaded");
+          eventEmitter.emit("success");
+          res.end();
+        });
       });
     } else {
       res.writeHead(200, { "Content-Type": "text/html" });
